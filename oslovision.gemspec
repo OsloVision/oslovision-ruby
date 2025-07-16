@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "oslovision"
   spec.version = Oslovision::VERSION
   spec.authors = ["Alastair Brunton"]
-  spec.email = ["a@axb.no"]
+  spec.email = ["support@oslo.vision"]
 
   spec.summary = "Ruby client for the OsloVision API"
   spec.description = "A Ruby gem providing a client for interacting with the Oslo API, a platform for creating and managing datasets for machine learning projects. The client allows you to easily upload images, create annotations, and download dataset exports."
