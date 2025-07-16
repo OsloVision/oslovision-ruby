@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Tests",
+      "type": "shell",
+      "command": "bundle",
+      "args": ["exec", "rspec"],
+      "group": "test",
+      "problemMatcher": [],
+      "isBackground": false
+    },
+    {
+      "label": "Build Gem",
+      "type": "shell",
+      "command": "bundle",
+      "args": ["exec", "rake", "build"],
+      "group": "build",
+      "problemMatcher": [],
+      "isBackground": false
+    },
+    {
+      "label": "Install Dependencies",
+      "type": "shell",
+      "command": "bundle",
+      "args": ["install"],
+      "group": "build",
+      "problemMatcher": [],
+      "isBackground": false
+    },
+    {
+      "label": "Interactive Console",
+      "type": "shell",
+      "command": "bin/console",
+      "args": [],
+      "group": "test",
+      "problemMatcher": [],
+      "isBackground": false
+    }
+  ]
+}
