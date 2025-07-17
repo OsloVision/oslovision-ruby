@@ -48,7 +48,7 @@ module Oslovision
           split: split,
           status: status
         }
-        response = self.class.post("/projects/#{project_identifier}/images", body: body)
+        response = self.class.post("/images", body: body)
       else
         # Handle file upload
         file_data = prepare_file_data(image)
@@ -57,7 +57,7 @@ module Oslovision
           split: split,
           status: status
         }
-        response = self.class.post("/projects/#{project_identifier}/images", body: body)
+        response = self.class.post("/images", body: body)
       end
 
       handle_response(response)
@@ -76,7 +76,8 @@ module Oslovision
     # @raise [Oslovision::APIError] If the API request fails
     def create_annotation(project_identifier, image_identifier, label, x0:, y0:, width_px:, height_px:)
       body = {
-        image_id: image_identifier,
+        project_identifier: project_identifier,
+        image_identifier: image_identifier,
         label: label,
         x0: x0,
         y0: y0,
@@ -84,8 +85,8 @@ module Oslovision
         height_px: height_px
       }
 
-      response = self.class.post("/projects/#{project_identifier}/annotations", 
-                                 body: body.to_json,
+      response = self.class.post("/annotations",
+                                 body: body,
                                  headers: { "Content-Type" => "application/json" })
       handle_response(response)
     end
@@ -98,7 +99,7 @@ module Oslovision
     # @return [String] The path to the downloaded export directory
     # @raise [Oslovision::APIError] If the API request fails
     def download_export(project_identifier, version, output_dir: ".")
-      response = self.class.get("/projects/#{project_identifier}/exports/#{version}/download")
+      response = self.class.get("/exports/#{version}?project_identifier=#{project_identifier}")
       
       if response.success?
         zip_path = File.join(output_dir, "#{project_identifier}_v#{version}.zip")

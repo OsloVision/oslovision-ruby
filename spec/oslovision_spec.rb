@@ -66,10 +66,10 @@ RSpec.describe Oslovision::Client do
         image_url = "https://example.com/image.jpg"
         expected_response = { "id" => "image_123", "url" => image_url }
 
-        stub_request(:post, "#{base_url}/projects/#{project_id}/images")
+        stub_request(:post,"#{base_url}/images")
           .with(
             headers: { "Authorization" => "Bearer #{token}" },
-            body: { url: image_url, split: "train", status: "pending" }
+            body: { url: image_url, split: "train", status: "pending", project_identifier: project_id }
           )
           .to_return(status: 200, body: expected_response.to_json)
 
@@ -84,7 +84,7 @@ RSpec.describe Oslovision::Client do
         file = StringIO.new(file_content)
         expected_response = { "id" => "image_123" }
 
-        stub_request(:post, "#{base_url}/projects/#{project_id}/images")
+        stub_request(:post, "#{base_url}/images")
           .with(headers: { "Authorization" => "Bearer #{token}" })
           .to_return(status: 200, body: expected_response.to_json)
 
