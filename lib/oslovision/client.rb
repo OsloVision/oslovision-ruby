@@ -5,7 +5,6 @@ require "mime/types"
 require "json"
 require "fileutils"
 require "zip"
-require "stringio"
 
 module Oslovision
   # Main client class for interacting with the Oslo API
