@@ -77,7 +77,8 @@ module Oslovision
     # @raise [Oslovision::APIError] If the API request fails
     def create_annotation(project_identifier, image_identifier, label, x0:, y0:, width_px:, height_px:)
       body = {
-        image_id: image_identifier,
+        project_identifier: project_identifier,
+        image_identifier: image_identifier,
         label: label,
         x0: x0,
         y0: y0,

@@ -101,14 +101,15 @@ RSpec.describe Oslovision::Client do
     it "creates annotation with bounding box" do
       expected_response = { "id" => "annotation_123" }
 
-      stub_request(:post, "#{base_url}/projects/#{project_id}/annotations")
+      stub_request(:post, "#{base_url}/annotations")
         .with(
           headers: { 
             "Authorization" => "Bearer #{token}",
             "Content-Type" => "application/json"
           },
           body: {
-            image_id: image_id,
+            project_identifier: project_id,
+            image_identifier: image_id,
             label: "cat",
             x0: 10,
             y0: 20,
@@ -140,7 +141,7 @@ RSpec.describe Oslovision::Client do
       # Mock zip file content
       zip_content = "fake zip content"
 
-      stub_request(:get, "#{base_url}/projects/#{project_id}/exports/#{version}/download")
+      stub_request(:get, "#{base_url}/exports/#{version}?project_identifier=#{project_id}")
         .with(headers: { "Authorization" => "Bearer #{token}" })
         .to_return(status: 200, body: zip_content)
 
