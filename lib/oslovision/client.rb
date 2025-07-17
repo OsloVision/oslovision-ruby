@@ -46,7 +46,8 @@ module Oslovision
         body = {
           url: image,
           split: split,
-          status: status
+          status: status,
+          project_identifier: project_identifier
         }
         response = self.class.post("/images", body: body)
       else
@@ -76,8 +77,7 @@ module Oslovision
     # @raise [Oslovision::APIError] If the API request fails
     def create_annotation(project_identifier, image_identifier, label, x0:, y0:, width_px:, height_px:)
       body = {
-        project_identifier: project_identifier,
-        image_identifier: image_identifier,
+        image_id: image_identifier,
         label: label,
         x0: x0,
         y0: y0,
@@ -86,7 +86,7 @@ module Oslovision
       }
 
       response = self.class.post("/annotations",
-                                 body: body,
+                                 body: body.to_json,
                                  headers: { "Content-Type" => "application/json" })
       handle_response(response)
     end
