@@ -56,7 +56,8 @@ module Oslovision
         body = {
           file: file_data,
           split: split,
-          status: status
+          status: status,
+          project_identifier: project_identifier
         }
         response = self.class.post("/images", body: body)
       end
