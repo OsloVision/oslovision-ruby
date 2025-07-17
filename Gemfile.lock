@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    oslovision (0.1.2)
+    oslovision (0.1.3)
       httparty (~> 0.22.0)
       mime-types (~> 3.0)
       rubyzip (~> 2.3)

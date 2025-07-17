@@ -54,7 +54,7 @@ module Oslovision
         # Handle file upload
         file_data = prepare_file_data(image)
         body = {
-          file: file_data,
+          image: file_data,
           split: split,
           status: status,
           project_identifier: project_identifier
